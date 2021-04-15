@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(!dbManager.isCountryInLocal()){
             saveCityJSONToDB()
         }
+        dbManager.setDefaultCity()
         
         return true
     }
