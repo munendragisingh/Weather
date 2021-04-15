@@ -10,6 +10,10 @@
 		AF68804A2626D58E0014F9B0 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6880472626D58E0014F9B0 /* RequestManager.swift */; };
 		AF68804B2626D58E0014F9B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6880482626D58E0014F9B0 /* NetworkManager.swift */; };
 		AF68804C2626D58E0014F9B0 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6880492626D58E0014F9B0 /* URLManager.swift */; };
+		AF6A4BD7262765CA0050A40B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AF6A4BD6262765CA0050A40B /* RealmSwift */; };
+		AF6A4BD9262765CA0050A40B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AF6A4BD8262765CA0050A40B /* Realm */; };
+		AF6A4BE426276A4D0050A40B /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6A4BE326276A4D0050A40B /* DBManager.swift */; };
+		AF6A4BE9262770000050A40B /* city_list.json in Resources */ = {isa = PBXBuildFile; fileRef = AF6A4BE8262770000050A40B /* city_list.json */; };
 		AFC1564C2626CC9B00C66B0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1564B2626CC9B00C66B0A /* AppDelegate.swift */; };
 		AFC1564E2626CC9B00C66B0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1564D2626CC9B00C66B0A /* SceneDelegate.swift */; };
 		AFC156502626CC9B00C66B0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1564F2626CC9B00C66B0A /* ViewController.swift */; };
@@ -41,6 +45,8 @@
 		AF6880472626D58E0014F9B0 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		AF6880482626D58E0014F9B0 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AF6880492626D58E0014F9B0 /* URLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
+		AF6A4BE326276A4D0050A40B /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		AF6A4BE8262770000050A40B /* city_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city_list.json; sourceTree = "<group>"; };
 		AFC156482626CC9B00C66B0A /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC1564B2626CC9B00C66B0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFC1564D2626CC9B00C66B0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF6A4BD9262765CA0050A40B /* Realm in Frameworks */,
+				AF6A4BD7262765CA0050A40B /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +100,14 @@
 			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
+		AF6A4BE226276A350050A40B /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				AF6A4BE326276A4D0050A40B /* DBManager.swift */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
 		AFC1563F2626CC9B00C66B0A = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +131,7 @@
 		AFC1564A2626CC9B00C66B0A /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				AF6A4BE226276A350050A40B /* DBManager */,
 				AF6880462626D58E0014F9B0 /* NetworkLayer */,
 				AFC1564B2626CC9B00C66B0A /* AppDelegate.swift */,
 				AFC1564D2626CC9B00C66B0A /* SceneDelegate.swift */,
@@ -161,6 +178,10 @@
 			dependencies = (
 			);
 			name = Weather;
+			packageProductDependencies = (
+				AF6A4BD6262765CA0050A40B /* RealmSwift */,
+				AF6A4BD8262765CA0050A40B /* Realm */,
+			);
 			productName = Weather;
 			productReference = AFC156482626CC9B00C66B0A /* Weather.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +253,9 @@
 				Base,
 			);
 			mainGroup = AFC1563F2626CC9B00C66B0A;
+			packageReferences = (
+				AF6A4BD5262765CA0050A40B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = AFC156492626CC9B00C66B0A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -250,6 +274,7 @@
 			files = (
 				AFC156582626CC9C00C66B0A /* LaunchScreen.storyboard in Resources */,
 				AFC156552626CC9C00C66B0A /* Assets.xcassets in Resources */,
+				AF6A4BE9262770000050A40B /* city_list.json in Resources */,
 				AFC156532626CC9B00C66B0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +303,7 @@
 				AFC156502626CC9B00C66B0A /* ViewController.swift in Sources */,
 				AFC1564C2626CC9B00C66B0A /* AppDelegate.swift in Sources */,
 				AF68804B2626D58E0014F9B0 /* NetworkManager.swift in Sources */,
+				AF6A4BE426276A4D0050A40B /* DBManager.swift in Sources */,
 				AFC1564E2626CC9B00C66B0A /* SceneDelegate.swift in Sources */,
 				AF68804A2626D58E0014F9B0 /* RequestManager.swift in Sources */,
 				AF68804C2626D58E0014F9B0 /* URLManager.swift in Sources */,
@@ -607,6 +633,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AF6A4BD5262765CA0050A40B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.7.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AF6A4BD6262765CA0050A40B /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF6A4BD5262765CA0050A40B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		AF6A4BD8262765CA0050A40B /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF6A4BD5262765CA0050A40B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AFC156402626CC9B00C66B0A /* Project object */;
 }

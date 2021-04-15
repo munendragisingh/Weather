@@ -6,15 +6,36 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let dbManager = DBManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if(!dbManager.isCountryInLocal()){
+            saveCityJSONToDB()
+        }
+        
         return true
+    }
+    
+    private func saveCityJSONToDB(){
+        if let path = Bundle.main.path(forResource: "city_list", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                guard let users = try? JSONDecoder().decode(List<City>.self, from: data) else {
+                    return
+                }
+                dbManager.saveCountry(city: users)
+              } catch {
+                print(error.localizedDescription)
+              }
+        }
     }
 
     // MARK: UISceneSession Lifecycle
