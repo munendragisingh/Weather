@@ -13,7 +13,7 @@ class SearchViewModel {
     private var filterCity: Array<City> = []
     
     init() {
-        selectedCity = dbManager.getAllCity()
+        selectedCity = dbManager.getAllUnselectedCity()
         filterCity = selectedCity
     }
     
@@ -21,11 +21,11 @@ class SearchViewModel {
         return filterCity.count
     }
     
-    func filter(with string:String) -> Array<City> {
+    func filter(with string: String) -> Array<City> {
         if string.count == 0 {
             filterCity = selectedCity
         }else{
-            let predicate = NSPredicate(format: "name CONTAINS[c] %@", string)
+            let predicate = NSPredicate(format: "(name CONTAINS[c] %@)", string)
             filterCity = selectedCity.filter{ predicate.evaluate(with: $0)  }
         }
         return filterCity

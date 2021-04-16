@@ -42,9 +42,13 @@ class DBManager {
     
     func setDefaultCity() {
         let realm = getRealm()
-        let city = realm.objects(City.self).filter("id=1267995").last
+        let sydney = realm.objects(City.self).filter("id=4163971").last
+        let melbourne = realm.objects(City.self).filter("id=2147714").last
+        let brisbane = realm.objects(City.self).filter("id=2174003").last
         try! realm.write {
-            city?.isSlected = true
+            sydney?.isSlected = true
+            melbourne?.isSlected = true
+            brisbane?.isSlected = true
         }
     }
     
@@ -54,17 +58,32 @@ class DBManager {
         return Array(cities)
     }
     
+    func getAllUnselectedCity() -> Array<City> {
+        let realm = getRealm()
+        let cities = realm.objects(City.self).filter(NSPredicate(format: "isSlected = false"))
+        return Array(cities)
+    }
+    
     func selectCity(city: City) {
         let realm = getRealm()
-        try! realm.write {
-            city.isSlected = true
+        realm.beginWrite()
+        do {
+                city.isSlected = true
+            try realm.commitWrite()
+        } catch  {
+            print(error.localizedDescription)
         }
+        
     }
     
     func deSelectCity(city: City) {
         let realm = getRealm()
-        try! realm.write {
+        realm.beginWrite()
+        do {
             city.isSlected = false
+            try realm.commitWrite()
+        } catch  {
+            print(error.localizedDescription)
         }
     }
     

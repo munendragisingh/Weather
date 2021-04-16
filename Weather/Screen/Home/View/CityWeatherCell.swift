@@ -23,11 +23,17 @@ class CityWeatherCell: UITableViewCell {
     func setData(city: City) {
         cityLabel?.text = city.name
         let cityid = city.id
-        let ass = String(format: "%d", cityid)
-        weatherViewModel.getCityWeather(cityid: ass) {[weak self] (data, error) in
-            DispatchQueue.main.async {
-                self?.setWeatherData()
-            }
+        let cityidString = String(format: "%d", cityid)
+        temp?.text = "..."
+        hum?.text = "H:... L:..."
+        if weatherViewModel.isDataAvailable {
+            self.setWeatherData()
+        } else {
+             weatherViewModel.getCityWeather(cityid: cityidString) {[weak self] (data, error) in
+                DispatchQueue.main.async {
+                    self?.setWeatherData()
+                }
+             }
         }
     }
     

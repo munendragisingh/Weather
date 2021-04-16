@@ -15,6 +15,11 @@ class WeatherViewModel {
     private let requestManager = RequestManager()
     private var responseData: WeatherData?
     
+    var isDataAvailable: Bool {
+        return responseData != nil
+    }
+    
+    
     /// getCityWeather takes city id. using weather api it will get weather data of a perticular city and return it to caller
     /// - Parameters:
     ///   - cityid: id of city
