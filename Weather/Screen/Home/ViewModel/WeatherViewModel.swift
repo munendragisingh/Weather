@@ -60,7 +60,7 @@ class WeatherViewModel {
             return "0"
         }
         
-        return "\(temp - 273.15) C"
+        return String(format: "%.2f", (temp - 273.15))
     }
     
     func cityHighTemp() -> String {
@@ -68,7 +68,7 @@ class WeatherViewModel {
             return "0"
         }
         
-        return "\(temp - 273.15)"
+        return String(format: "%.2f", (temp - 273.15))
     }
     
     func cityLowTemp() -> String {
@@ -76,6 +76,6 @@ class WeatherViewModel {
             return "0"
         }
         
-        return "\(temp - 273.15)"
+        return String(format: "%.2f", (temp - 273.15))
     }
 }

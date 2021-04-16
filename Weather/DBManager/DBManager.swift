@@ -15,13 +15,13 @@ class DBManager {
         return realm
     }
     
-     func isCountryInLocal() -> Bool{
+     func isCityInLocal() -> Bool{
         let realm = getRealm()
         let tasks = realm.objects(City.self)
         return tasks.count > 0
     }
     
-    func saveCountry(city: List<City>) {
+    func saveCity(city: List<City>) {
         let realm = getRealm()
         try! realm.write {
             realm.add(city)
@@ -48,8 +48,24 @@ class DBManager {
         }
     }
     
-    func getCountry() {
-        print()
+    func getAllCity() -> Array<City> {
+        let realm = getRealm()
+        let cities = realm.objects(City.self)
+        return Array(cities)
+    }
+    
+    func selectCity(city: City) {
+        let realm = getRealm()
+        try! realm.write {
+            city.isSlected = true
+        }
+    }
+    
+    func deSelectCity(city: City) {
+        let realm = getRealm()
+        try! realm.write {
+            city.isSlected = false
+        }
     }
     
 }

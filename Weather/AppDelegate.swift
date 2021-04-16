@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if(!dbManager.isCountryInLocal()){
+        if(!dbManager.isCityInLocal()){
             saveCityJSONToDB()
         }
         dbManager.setDefaultCity()
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 guard let users = try? JSONDecoder().decode(List<City>.self, from: data) else {
                     return
                 }
-                dbManager.saveCountry(city: users)
+                dbManager.saveCity(city: users)
               } catch {
                 print(error.localizedDescription)
               }

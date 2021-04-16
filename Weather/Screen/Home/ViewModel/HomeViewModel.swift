@@ -27,4 +27,14 @@ class HomeViewModel {
         return selectedCity
     }
     
+    func reloadSelectedCity()  {
+        selectedCity = dbManager.searchSelectedCity()
+    }
+    
+    func removeCity(index:Int) {
+        let city = selectedCity[index]
+        dbManager.deSelectCity(city: city)
+        selectedCity.remove(at: index)
+    }
+    
 }

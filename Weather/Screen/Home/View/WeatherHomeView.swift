@@ -25,11 +25,22 @@ class WeatherHomeView: GradientView {
     @IBAction func searchCity(sender: UIButton){
         self.delegate?.view(view: self, didPerformAction: HomeEvent.Search, userInfo: nil)
     }
+    
+    func reloadView() {
+        viewModel?.reloadSelectedCity()
+        cities = viewModel?.getSelectedCity ?? []
+        tableView?.reloadData()
+    }
 }
 
 
 extension WeatherHomeView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel?.removeCity(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
 extension WeatherHomeView: UITableViewDataSource {
