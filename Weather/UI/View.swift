@@ -15,14 +15,7 @@ protocol ViewDelegate: class {
 class View: UIView {
     
     weak var delegate: ViewDelegate?
-    fileprivate var loaderView = UIView()
-    
     func viewDidLoad() {
-        
-    }
-    
-    override func layoutSubviews() {
-        loaderView = LoaderView(frame: Utility.main.window?.frame ?? self.frame)
     }
     
     func viewWillAppear() {
@@ -38,25 +31,3 @@ class View: UIView {
     }
 }
 
-extension View {
-    
-    /// display full screen loader
-     func showLoader() {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else{
-                return
-            }
-            Utility.main.window?.addSubview(self.loaderView)
-        }
-    }
-    
-    /// remove full screen loader
-    func hideLoader() {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else {
-                return
-            }
-            self.loaderView.removeFromSuperview()
-        }
-    }
-}
