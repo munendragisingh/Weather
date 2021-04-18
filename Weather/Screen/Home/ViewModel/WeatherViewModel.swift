@@ -60,6 +60,10 @@ class WeatherViewModel {
         return responseData
     }
     
+    func weatherData() -> WeatherData? {
+        return responseData
+    }
+    
     func cityTemp() -> String {
         guard let data = responseData, let main = data.main, let temp = main.temp else {
             return "0"
@@ -81,6 +85,10 @@ class WeatherViewModel {
             return "0"
         }
         
-        return String(format: "%.2f", (temp - 273.15))
+        return String(format: "%.2f°", (temp - 273.15))
+    }
+    
+    func getImage() -> String {
+        return urlManager.imageURL(image: "\(responseData?.weather?.first?.icon ?? "")@2x.png")
     }
 }

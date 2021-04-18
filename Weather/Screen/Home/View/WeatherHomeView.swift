@@ -9,6 +9,7 @@ import UIKit
 
 enum HomeEvent {
     case Search
+    case SelectRow
 }
 
 class WeatherHomeView: GradientView {
@@ -24,6 +25,10 @@ class WeatherHomeView: GradientView {
     
     @IBAction func searchCity(sender: UIButton){
         self.delegate?.view(view: self, didPerformAction: HomeEvent.Search, userInfo: nil)
+    }
+
+    @IBAction func reloadCity(sender: UIButton){
+        reloadView()
     }
     
     func reloadView() {
@@ -41,6 +46,11 @@ extension WeatherHomeView: UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        guard let cell = tableView.cellForRow(at: indexPath) as? CityWeatherCell, let weatherData = cell.getWeatherData() else { return }
+        self.delegate?.view(view: self, didPerformAction: HomeEvent.SelectRow, userInfo: weatherData)
+    }
 }
 
 extension WeatherHomeView: UITableViewDataSource {
@@ -55,6 +65,7 @@ extension WeatherHomeView: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityWeatherCell", for: indexPath) as? CityWeatherCell else { return CityWeatherCell() }
+        cell.selectionStyle = .none
         cell.setData(city: cities[indexPath.row])
         return cell
     }

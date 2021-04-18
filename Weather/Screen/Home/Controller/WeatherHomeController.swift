@@ -18,9 +18,18 @@ class WeatherHomeController: ViewController {
         switch action {
         case HomeEvent.Search:
             openSearchView()
+        case HomeEvent.SelectRow:
+            openDetailPage(userInfo: userInfo)
          default: break
             
         }
+    }
+    
+    func openDetailPage(userInfo: Any?) {
+        guard let userInfo = userInfo, let data = userInfo as? WeatherData else { return }
+        guard let detailController = self.storyboard?.instantiateViewController(identifier: "WeatherDetailController") as? WeatherDetailController else { return }
+        detailController.weatherData = data
+        self.navigationController?.pushViewController(detailController, animated: true)
     }
     
     func openSearchView() {

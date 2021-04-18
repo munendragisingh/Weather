@@ -9,7 +9,7 @@ import Foundation
 
 class URLManager {
     private let baseURL: String = "https://api.openweathermap.org/data/2.5/weather"
-    private let imageBaseURL: String = "http://openweathermap.org/img/wn/"
+    private let imageBaseURL: String = "https://openweathermap.org/img/wn/"
     private let APIkey = "f0c7efac211d2eab40a6509b1125e984"
     
     func weatherCity(city: String, countryCode: String = "") -> String {

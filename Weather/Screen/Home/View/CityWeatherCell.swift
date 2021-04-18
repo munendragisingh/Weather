@@ -11,6 +11,7 @@ class CityWeatherCell: UITableViewCell {
     @IBOutlet weak var cityLabel: UILabel?
     @IBOutlet weak var temp: UILabel?
     @IBOutlet weak var hum: UILabel?
+    @IBOutlet weak var weatherImage: ImageLoader?
     
     private let weatherViewModel = WeatherViewModel()
     
@@ -40,6 +41,13 @@ class CityWeatherCell: UITableViewCell {
     func setWeatherData() {
         temp?.text = weatherViewModel.cityTemp()
         hum?.text = "H:\(weatherViewModel.cityHighTemp()) L:\(weatherViewModel.cityLowTemp())"
+        if let imgUrl = URL(string: weatherViewModel.getImage()) {
+            weatherImage?.loadImageWithUrl(url: imgUrl,placeHolderImage: UIImage(named: "placeHolder"))
+        }
+    }
+    
+    func getWeatherData() -> WeatherData? {
+        return weatherViewModel.weatherData()
     }
     
 }

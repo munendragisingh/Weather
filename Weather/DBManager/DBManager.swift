@@ -68,7 +68,7 @@ class DBManager {
         let realm = getRealm()
         realm.beginWrite()
         do {
-                city.isSlected = true
+            city.isSlected = true
             try realm.commitWrite()
         } catch  {
             print(error.localizedDescription)
