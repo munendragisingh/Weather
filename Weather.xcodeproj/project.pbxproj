@@ -34,6 +34,7 @@
 		AF8AD15B262C127B00539100 /* DBManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AD15A262C127B00539100 /* DBManagerTest.swift */; };
 		AF8AD168262C1D9400539100 /* weatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = AF8AD167262C1D9400539100 /* weatherData.json */; };
 		AF8AD170262C22A500539100 /* weatherNoData.json in Resources */ = {isa = PBXBuildFile; fileRef = AF8AD16F262C22A500539100 /* weatherNoData.json */; };
+		AF8AD17B262C27EA00539100 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AD17A262C27EA00539100 /* HomeViewModelTest.swift */; };
 		AFA4D8742627F88500724216 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA4D8732627F88500724216 /* HomeViewModel.swift */; };
 		AFA4D87C2627FABB00724216 /* CityWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA4D87B2627FABB00724216 /* CityWeatherCell.swift */; };
 		AFA4D8812627FB3700724216 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA4D8802627FB3700724216 /* WeatherViewModel.swift */; };
@@ -90,6 +91,7 @@
 		AF8AD15A262C127B00539100 /* DBManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerTest.swift; sourceTree = "<group>"; };
 		AF8AD167262C1D9400539100 /* weatherData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherData.json; sourceTree = "<group>"; };
 		AF8AD16F262C22A500539100 /* weatherNoData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherNoData.json; sourceTree = "<group>"; };
+		AF8AD17A262C27EA00539100 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		AFA4D8732627F88500724216 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AFA4D87B2627FABB00724216 /* CityWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherCell.swift; sourceTree = "<group>"; };
 		AFA4D8802627FB3700724216 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +247,32 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		AF8AD182262C346200539100 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AFC156622626CC9C00C66B0A /* WeatherTests.swift */,
+				AF8AD17A262C27EA00539100 /* HomeViewModelTest.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AF8AD183262C347C00539100 /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				AF8AD15A262C127B00539100 /* DBManagerTest.swift */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
+		AF8AD184262C348D00539100 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				AF8AD16F262C22A500539100 /* weatherNoData.json */,
+				AF8AD167262C1D9400539100 /* weatherData.json */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		AFA4D86D2627F7C100724216 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,11 +371,10 @@
 		AFC156612626CC9C00C66B0A /* WeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				AF8AD16F262C22A500539100 /* weatherNoData.json */,
-				AF8AD167262C1D9400539100 /* weatherData.json */,
+				AF8AD184262C348D00539100 /* resource */,
+				AF8AD183262C347C00539100 /* DBManager */,
+				AF8AD182262C346200539100 /* Home */,
 				AF8AD155262C0C7300539100 /* MockSession.swift */,
-				AFC156622626CC9C00C66B0A /* WeatherTests.swift */,
-				AF8AD15A262C127B00539100 /* DBManagerTest.swift */,
 				AFC156642626CC9C00C66B0A /* Info.plist */,
 			);
 			path = WeatherTests;
@@ -540,6 +567,7 @@
 				AF8AD15B262C127B00539100 /* DBManagerTest.swift in Sources */,
 				AF8AD156262C0C7300539100 /* MockSession.swift in Sources */,
 				AFC156632626CC9C00C66B0A /* WeatherTests.swift in Sources */,
+				AF8AD17B262C27EA00539100 /* HomeViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
