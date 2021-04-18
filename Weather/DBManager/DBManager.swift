@@ -28,6 +28,13 @@ class DBManager {
         }
     }
     
+    func deleteAll() {
+        let realm = getRealm()
+        try! realm.write {
+            realm.deleteAll()
+        }
+    }
+    
     func filter(city: String) -> Array<City> {
         let realm = getRealm()
         let city = realm.objects(City.self).filter("name CONTAINS[c] %@", city)

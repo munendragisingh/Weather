@@ -30,6 +30,10 @@
 		AF6A4BDE262766320050A40B /* WeatherCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6A4BDD262766320050A40B /* WeatherCity.swift */; };
 		AF6A4BE426276A4D0050A40B /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6A4BE326276A4D0050A40B /* DBManager.swift */; };
 		AF6A4BE9262770000050A40B /* city_list.json in Resources */ = {isa = PBXBuildFile; fileRef = AF6A4BE8262770000050A40B /* city_list.json */; };
+		AF8AD156262C0C7300539100 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AD155262C0C7300539100 /* MockSession.swift */; };
+		AF8AD15B262C127B00539100 /* DBManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AD15A262C127B00539100 /* DBManagerTest.swift */; };
+		AF8AD168262C1D9400539100 /* weatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = AF8AD167262C1D9400539100 /* weatherData.json */; };
+		AF8AD170262C22A500539100 /* weatherNoData.json in Resources */ = {isa = PBXBuildFile; fileRef = AF8AD16F262C22A500539100 /* weatherNoData.json */; };
 		AFA4D8742627F88500724216 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA4D8732627F88500724216 /* HomeViewModel.swift */; };
 		AFA4D87C2627FABB00724216 /* CityWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA4D87B2627FABB00724216 /* CityWeatherCell.swift */; };
 		AFA4D8812627FB3700724216 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA4D8802627FB3700724216 /* WeatherViewModel.swift */; };
@@ -82,6 +86,10 @@
 		AF6A4BDD262766320050A40B /* WeatherCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCity.swift; sourceTree = "<group>"; };
 		AF6A4BE326276A4D0050A40B /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		AF6A4BE8262770000050A40B /* city_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city_list.json; sourceTree = "<group>"; };
+		AF8AD155262C0C7300539100 /* MockSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
+		AF8AD15A262C127B00539100 /* DBManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerTest.swift; sourceTree = "<group>"; };
+		AF8AD167262C1D9400539100 /* weatherData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherData.json; sourceTree = "<group>"; };
+		AF8AD16F262C22A500539100 /* weatherNoData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherNoData.json; sourceTree = "<group>"; };
 		AFA4D8732627F88500724216 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AFA4D87B2627FABB00724216 /* CityWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherCell.swift; sourceTree = "<group>"; };
 		AFA4D8802627FB3700724216 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
@@ -335,7 +343,11 @@
 		AFC156612626CC9C00C66B0A /* WeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				AF8AD16F262C22A500539100 /* weatherNoData.json */,
+				AF8AD167262C1D9400539100 /* weatherData.json */,
+				AF8AD155262C0C7300539100 /* MockSession.swift */,
 				AFC156622626CC9C00C66B0A /* WeatherTests.swift */,
+				AF8AD15A262C127B00539100 /* DBManagerTest.swift */,
 				AFC156642626CC9C00C66B0A /* Info.plist */,
 			);
 			path = WeatherTests;
@@ -473,6 +485,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF8AD168262C1D9400539100 /* weatherData.json in Resources */,
+				AF8AD170262C22A500539100 /* weatherNoData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +537,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF8AD15B262C127B00539100 /* DBManagerTest.swift in Sources */,
+				AF8AD156262C0C7300539100 /* MockSession.swift in Sources */,
 				AFC156632626CC9C00C66B0A /* WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

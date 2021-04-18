@@ -15,22 +15,28 @@ class HomeViewModel {
         selectedCity = dbManager.searchSelectedCity()
     }
     
+    /// return number of section in table view
     var numberOfSection: Int {
         return 1
     }
     
+    /// return number of rows in section
     var numberOfRowsInSection: Int {
         return selectedCity.count
     }
     
+    /// return current city
     var getSelectedCity: Array<City> {
         return selectedCity
     }
     
+    /// reload city data
     func reloadSelectedCity()  {
         selectedCity = dbManager.searchSelectedCity()
     }
     
+    /// remove city cell from tableview and mark it as on selected
+    /// - Parameter index: index of city
     func removeCity(index:Int) {
         let city = selectedCity[index]
         dbManager.deSelectCity(city: city)

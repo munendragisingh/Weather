@@ -60,10 +60,14 @@ class WeatherViewModel {
         return responseData
     }
     
+    /// return Weather data
+    /// - Returns: WeatherData
     func weatherData() -> WeatherData? {
         return responseData
     }
     
+    /// return city temperature in celsius
+    /// - Returns: temperature in celsius
     func cityTemp() -> String {
         guard let data = responseData, let main = data.main, let temp = main.temp else {
             return "0"
@@ -72,6 +76,8 @@ class WeatherViewModel {
         return String(format: "%.2f", (temp - 273.15))
     }
     
+    /// return city high temperature in celsius
+    /// - Returns: temperature in celsius
     func cityHighTemp() -> String {
         guard let data = responseData, let main = data.main, let temp = main.tempMax else {
             return "0"
@@ -80,6 +86,8 @@ class WeatherViewModel {
         return String(format: "%.2f", (temp - 273.15))
     }
     
+    /// return city low temperature in celsius
+    /// - Returns: temperature in celsius
     func cityLowTemp() -> String {
         guard let data = responseData, let main = data.main, let temp = main.tempMin else {
             return "0"
@@ -88,6 +96,8 @@ class WeatherViewModel {
         return String(format: "%.2f°", (temp - 273.15))
     }
     
+    /// return 2x image url
+    /// - Returns: image URL
     func getImage() -> String {
         return urlManager.imageURL(image: "\(responseData?.weather?.first?.icon ?? "")@2x.png")
     }
