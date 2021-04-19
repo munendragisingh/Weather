@@ -25,7 +25,7 @@ class SearchView: View {
 extension SearchView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectCity(at: indexPath.row)
-        self.delegate?.view(view: self, didPerformAction: SearchViewEvents.dismis, userInfo: nil)
+        self.delegate?.view(view: self, didPerformAction: SearchViewEvents.dismis, userInfo: viewModel.cityAt(index:indexPath.row))
     }
 }
 

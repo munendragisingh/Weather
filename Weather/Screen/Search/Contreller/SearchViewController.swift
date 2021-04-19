@@ -19,8 +19,8 @@ class SearchViewController: ViewController {
     override func view(view: View, didPerformAction action: Any, userInfo: Any?) {
         switch action {
         case SearchViewEvents.dismis:
-            if let navigationController = presentingViewController as? UINavigationController,  let presenter = navigationController.topViewController as? WeatherHomeController {
-                (presenter.view as? WeatherHomeView)?.reloadView()
+            if let navigationController = presentingViewController as? UINavigationController,  let presenter = navigationController.topViewController as? WeatherHomeController,let city = userInfo as? City {
+                (presenter.view as? WeatherHomeView)?.reloadView(city: city)
             }
             self.dismiss(animated: true, completion: nil)
          default: break

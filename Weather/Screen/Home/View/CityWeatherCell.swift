@@ -12,25 +12,26 @@ class CityWeatherCell: UITableViewCell {
     @IBOutlet weak var temp: UILabel?
     @IBOutlet weak var hum: UILabel?
     @IBOutlet weak var weatherImage: ImageLoader?
+    private var viewModel: WeatherViewModel?
     
-    private let weatherViewModel = WeatherViewModel()
-    
+    /// prepare for reuse
     override func prepareForReuse() {
         cityLabel?.text = ""
         temp?.text = ""
         temp?.text = ""
     }
     
-    func setData(city: City) {
-        cityLabel?.text = city.name
-        let cityid = city.id
-        let cityidString = String(format: "%d", cityid)
+    /// set view model to cell
+    /// - Parameter viewModel: view model
+    func setViewModel(viewModel: WeatherViewModel) {
+        self.viewModel = viewModel
+        cityLabel?.text = self.viewModel?.cityName
         temp?.text = "..."
         hum?.text = "H:... L:..."
-        if weatherViewModel.isDataAvailable {
+        if viewModel.isDataAvailable {
             self.setWeatherData()
         } else {
-             weatherViewModel.getCityWeather(cityid: cityidString) {[weak self] (data, error) in
+            viewModel.getCityWeather() {[weak self] (data, error) in
                 DispatchQueue.main.async {
                     self?.setWeatherData()
                 }
@@ -38,16 +39,21 @@ class CityWeatherCell: UITableViewCell {
         }
     }
     
+    /// set weather data in in cell
     func setWeatherData() {
-        temp?.text = weatherViewModel.cityTemp()
-        hum?.text = "H:\(weatherViewModel.cityHighTemp()) L:\(weatherViewModel.cityLowTemp())"
-        if let imgUrl = URL(string: weatherViewModel.getImage()) {
+        temp?.text = viewModel?.cityTemp()
+        let high = String(describing: viewModel?.cityHighTemp() ?? "")
+        let low = String(describing: viewModel?.cityLowTemp() ?? "")
+        hum?.text = "H:\(high) L:\(low)"
+        if let imgUrl = URL(string: viewModel?.getImage() ?? "") {
             weatherImage?.loadImageWithUrl(url: imgUrl,placeHolderImage: UIImage(named: "placeHolder"))
         }
     }
     
+    /// return cell weather data
+    /// - Returns: weather data
     func getWeatherData() -> WeatherData? {
-        return weatherViewModel.weatherData()
+        return viewModel?.weatherData()
     }
     
 }

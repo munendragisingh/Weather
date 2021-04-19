@@ -14,9 +14,21 @@ class WeatherViewModel {
     private let urlManager = URLManager()
     private let requestManager = RequestManager()
     private var responseData: WeatherData?
+    private var city: City?
     
+    init(city: City?) {
+        self.city = city
+    }
+    
+    /// check if weather data is set
     var isDataAvailable: Bool {
         return responseData != nil
+    }
+    
+    /// return city name
+    var cityName: String {
+        guard let city = self.city,let name = city.name else { return "" }
+        return name
     }
     
     
@@ -24,8 +36,12 @@ class WeatherViewModel {
     /// - Parameters:
     ///   - cityid: id of city
     ///   - complition:Complition with weather data or error
-    func getCityWeather(cityid: String, complition: @escaping Complition){
-        let urlString = urlManager.weatherCity(cityID: cityid)
+    func getCityWeather(complition: @escaping Complition){
+        guard let city = self.city else {
+            complition(nil, NSError(domain: "", code: 500, userInfo: ["error": "invalid city id"]) as Error)
+            return
+        }
+        let urlString = urlManager.weatherCity(cityID: "\(city.id)")
         if let url = URL(string: urlString) {
             requestManager.get(with: url) { [weak self] (data, error) in
                 if error != nil {

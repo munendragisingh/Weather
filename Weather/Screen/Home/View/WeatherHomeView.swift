@@ -13,27 +13,24 @@ enum HomeEvent {
 }
 
 class WeatherHomeView: GradientView {
-    var viewModel: HomeViewModel?
-    var cities:Array<City> = []
+    var viewModel = HomeViewModel()
+//    var weatherViewModel: Array<WeatherViewModel> = []
     @IBOutlet weak var tableView: UITableView?
 
     override func viewDidLoad() {
-        viewModel = HomeViewModel()
-        cities = viewModel?.getSelectedCity ?? []
         tableView?.reloadData()
     }
     
+    /// search city
+    /// - Parameter sender: button object
     @IBAction func searchCity(sender: UIButton){
         self.delegate?.view(view: self, didPerformAction: HomeEvent.Search, userInfo: nil)
     }
-
-    @IBAction func reloadCity(sender: UIButton){
-        reloadView()
-    }
     
-    func reloadView() {
-        viewModel?.reloadSelectedCity()
-        cities = viewModel?.getSelectedCity ?? []
+    /// add city fto view fom cell
+    /// - Parameter city: city
+    func reloadView(city: City?) {
+        viewModel.addCity(city: city)
         tableView?.reloadData()
     }
 }
@@ -42,7 +39,7 @@ class WeatherHomeView: GradientView {
 extension WeatherHomeView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel?.removeCity(index: indexPath.row)
+            viewModel.removeCity(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -60,13 +57,13 @@ extension WeatherHomeView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfRowsInSection ?? 0
+        return viewModel.numberOfRowsInSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityWeatherCell", for: indexPath) as? CityWeatherCell else { return CityWeatherCell() }
         cell.selectionStyle = .none
-        cell.setData(city: cities[indexPath.row])
+        cell.setViewModel(viewModel: viewModel.cityViewModel(index: indexPath.row))
         return cell
     }
 }
