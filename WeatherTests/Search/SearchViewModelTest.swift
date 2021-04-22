@@ -1,8 +1,8 @@
 //
-//  HomeViewModelTest.swift
+//  SearchViewModel.swift
 //  WeatherTests
 //
-//  Created by Pratap SIngh on 18/04/21.
+//  Created by Pratap SIngh on 22/04/21.
 //
 
 import XCTest
@@ -10,31 +10,30 @@ import RealmSwift
 
 @testable import Weather
 
-class HomeViewModelTest: XCTestCase {
-    let viewModel = HomeViewModel()
-    private let dbManager = DBManager()
+class SearchViewModelTest: XCTestCase {
+    
+    let searchViewModel = SearchViewModel()
+    private var cityName: String = ""
     
     override func setUpWithError() throws {
         saveCityJSONToDB()
+
     }
 
     override func tearDownWithError() throws {
-
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testExample() throws {
-        XCTAssertEqual(viewModel.numberOfSection, 1, "section should be 1")
-        XCTAssertGreaterThan(viewModel.numberOfRowsInSection, 0, "row's should be greater then 1")
-        XCTAssertGreaterThan(viewModel.getSelectedCity.count, 0, "row's should be greater then 1")
-        
-        let city = City(id: 234233, name: "ffsd", state: "sdfsd", country: "IN", isSlected: true, coord: Coordinate(lat: 34.3423, lon: 54.24423))
-        
-        viewModel.addCity(city: city)
-        viewModel.removeCity(index: 0)
-        dbManager.deleteAll()
+        let city = searchViewModel.cityAt(index: 0)
+        XCTAssertNotNil(city)
+        XCTAssertGreaterThan(searchViewModel.numberOfRowsInSection, 0, "row's should be greater then 0")
+        let list = searchViewModel.filter(with: cityName)
+        XCTAssertGreaterThan(list.count, 0, "list.count should be greater then 1")
     }
-    
+
     private func saveCityJSONToDB() {
+        let dbManager = DBManager()
         if let path = Bundle.main.path(forResource: "city_list", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -42,10 +41,10 @@ class HomeViewModelTest: XCTestCase {
                     return
                 }
                 guard let city = users.last else { return  }
+                cityName = city.name!
                 users.removeAll()
                 users.append(city)
                 dbManager.saveCity(city: users)
-                dbManager.selectCity(city: city)
               } catch {
                 print(error.localizedDescription)
               }

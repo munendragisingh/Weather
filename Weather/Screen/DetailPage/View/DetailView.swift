@@ -17,11 +17,6 @@ class WeatherDetailView: GradientView {
     @IBOutlet weak var city: UILabel?
     @IBOutlet weak var detail: UILabel?
     
-   
-    override func viewDidLoad() {
-        
-    }
-    
     func setWeatherData(weatherData: WeatherData?) {
         self.viewModel.setWeatherData(weatherData: weatherData)
         temp?.text = self.viewModel.cityTemp()

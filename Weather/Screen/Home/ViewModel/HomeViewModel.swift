@@ -50,9 +50,12 @@ class HomeViewModel {
     /// - Parameter index: index of city
     func removeCity(index:Int) {
         let city = selectedCity[index]
-        dbManager.deSelectCity(city: city)
-        selectedCity.remove(at: index)
-        weatherViewModel.remove(at: index)
+        if !city.isInvalidated {
+            dbManager.deSelectCity(city: city)
+            selectedCity.remove(at: index)
+            weatherViewModel.remove(at: index)
+            
+        }
     }
     
 }

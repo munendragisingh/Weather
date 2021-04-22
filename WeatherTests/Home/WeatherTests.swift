@@ -9,7 +9,7 @@ import XCTest
 @testable import Weather
 
 class WeatherTests: XCTestCase {
-    let viewModel = WeatherViewModel()
+    let viewModel = WeatherViewModel(city: City(id: 4163971, name: "ffsd", state: "sdfsd", country: "IN", isSlected: true, coord: Coordinate(lat: 34.3423, lon: 54.24423)))
     override func setUpWithError() throws {
         
     }
@@ -25,7 +25,7 @@ class WeatherTests: XCTestCase {
         NetworkManager.main.setMockSession(session: session)
         
         let expectation = self.expectation(description: "Success Test")
-        viewModel.getCityWeather(cityid: "4163971") { (data, error) in
+        viewModel.getCityWeather() { (data, error) in
             XCTAssertNotNil(data, "data should not be nil")
             XCTAssertNil(error, "error should be nil")
             XCTAssertEqual(data?.name, "Sydney","city name should be 'Sydney'")
@@ -61,7 +61,7 @@ class WeatherTests: XCTestCase {
         NetworkManager.main.setMockSession(session: session)
         
         let expectation = self.expectation(description: "Success Test")
-        viewModel.getCityWeather(cityid: "4163971") { (data, error) in
+        viewModel.getCityWeather() { (data, error) in
             XCTAssertNotNil(error, "error should not be nil")
             expectation.fulfill()
         }
@@ -79,7 +79,7 @@ class WeatherTests: XCTestCase {
         NetworkManager.main.setMockSession(session: session)
         
         let expectation = self.expectation(description: "Success Test")
-        viewModel.getCityWeather(cityid: "4163971") { (data, error) in
+        viewModel.getCityWeather() { (data, error) in
             XCTAssertNotNil(error, "error should not be nil")
             XCTAssertNil(data, "data should be nil")
             expectation.fulfill()
