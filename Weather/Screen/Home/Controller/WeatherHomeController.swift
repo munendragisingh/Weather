@@ -14,12 +14,19 @@ class WeatherHomeController: ViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidLayoutSubviews() {
+        view.layoutSubviews()
+    }
+    
     override func view(view: View, didPerformAction action: Any, userInfo: Any?) {
         switch action {
         case HomeEvent.Search:
             openSearchView()
         case HomeEvent.SelectRow:
             openDetailPage(userInfo: userInfo)
+        case HomeEvent.noInternat:
+            self.showAlert(title: "No Internat", message: "Please check your connection and try again!")
+            
          default: break
             
         }

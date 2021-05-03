@@ -19,17 +19,16 @@ class HomeViewModelTest: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-
+        print()
     }
 
     func testExample() throws {
-        XCTAssertEqual(viewModel.numberOfSection, 1, "section should be 1")
-        XCTAssertGreaterThan(viewModel.numberOfRowsInSection, 0, "row's should be greater then 1")
-        XCTAssertGreaterThan(viewModel.getSelectedCity.count, 0, "row's should be greater then 1")
-        
         let city = City(id: 234233, name: "ffsd", state: "sdfsd", country: "IN", isSlected: true, coord: Coordinate(lat: 34.3423, lon: 54.24423))
         
         viewModel.addCity(city: city)
+        XCTAssertEqual(viewModel.numberOfSection, 1, "section should be 1")
+        XCTAssertGreaterThan(viewModel.numberOfRowsInSection, 0, "row's should be greater then 0")
+        XCTAssertGreaterThan(viewModel.getSelectedCity.count, 0, "selected cities should be greater then 0")
         viewModel.removeCity(index: 0)
         dbManager.deleteAll()
     }

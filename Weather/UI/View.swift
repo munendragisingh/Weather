@@ -15,6 +15,8 @@ protocol ViewDelegate: class {
 class View: UIView {
     
     weak var delegate: ViewDelegate?
+    
+    
     func viewDidLoad() {
     }
     
@@ -29,5 +31,6 @@ class View: UIView {
     
     func viewDidDisappear() {
     }
+    
+    
 }
-

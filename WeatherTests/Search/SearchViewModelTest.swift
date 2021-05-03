@@ -28,8 +28,6 @@ class SearchViewModelTest: XCTestCase {
         let city = searchViewModel.cityAt(index: 0)
         XCTAssertNotNil(city)
         XCTAssertGreaterThan(searchViewModel.numberOfRowsInSection, 0, "row's should be greater then 0")
-        let list = searchViewModel.filter(with: cityName)
-        XCTAssertGreaterThan(list.count, 0, "list.count should be greater then 1")
     }
 
     private func saveCityJSONToDB() {

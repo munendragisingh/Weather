@@ -9,8 +9,8 @@ import UIKit
 
 class CityWeatherCell: UITableViewCell {
     @IBOutlet weak var cityLabel: UILabel?
-    @IBOutlet weak var temp: UILabel?
-    @IBOutlet weak var hum: UILabel?
+    @IBOutlet weak var temp: LoadingLabel?
+    @IBOutlet weak var hum: LoadingLabel?
     @IBOutlet weak var weatherImage: ImageLoader?
     private var viewModel: WeatherViewModel?
     
@@ -26,11 +26,11 @@ class CityWeatherCell: UITableViewCell {
     func setViewModel(viewModel: WeatherViewModel) {
         self.viewModel = viewModel
         cityLabel?.text = self.viewModel?.cityName
-        temp?.text = "..."
-        hum?.text = "H:... L:..."
+        temp?.startLoading()
+        hum?.startLoading()
         if viewModel.isDataAvailable {
             self.setWeatherData()
-        } else {
+        } else if Utility.main.isConnected {
             viewModel.getCityWeather() {[weak self] (data, error) in
                 DispatchQueue.main.async {
                     self?.setWeatherData()
@@ -41,6 +41,8 @@ class CityWeatherCell: UITableViewCell {
     
     /// set weather data in in cell
     func setWeatherData() {
+        temp?.stopLoading()
+        hum?.stopLoading()
         temp?.text = viewModel?.cityTemp()
         let high = String(describing: viewModel?.cityHighTemp() ?? "")
         let low = String(describing: viewModel?.cityLowTemp() ?? "")

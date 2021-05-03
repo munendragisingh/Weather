@@ -13,10 +13,7 @@ class HomeViewModel {
     private var weatherViewModel: Array<WeatherViewModel> = []
     
     init() {
-        selectedCity = dbManager.searchSelectedCity()
-        for city in selectedCity {
-            weatherViewModel.append(WeatherViewModel(city: city))
-        }
+        loadData()
     }
     
     /// return number of section in table view
@@ -34,6 +31,13 @@ class HomeViewModel {
         return selectedCity
     }
     
+    func loadData() {
+        selectedCity = dbManager.searchSelectedCity()
+        weatherViewModel.removeAll()
+        for city in selectedCity {
+            weatherViewModel.append(WeatherViewModel(city: city))
+        }
+    }
     
     func cityViewModel(index: Int) -> WeatherViewModel {
         return weatherViewModel[index]

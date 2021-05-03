@@ -8,7 +8,7 @@
 import UIKit
 @IBDesignable
 class GradientView: View {
-
+    let gradientLayer = CAGradientLayer()
     @IBInspectable
     var colorBottom: UIColor = UIColor.red
     @IBInspectable
@@ -16,17 +16,17 @@ class GradientView: View {
     
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
+    
+    override func layoutSubviews() {
+            gradientLayer.frame = self.bounds
+        }
+    
     override func draw(_ rect: CGRect) {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorBottom.cgColor, colorTop.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.8, y: 1.0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = bounds
-        
         layer.insertSublayer(gradientLayer, at: 0)
-
     }
-    
-
 }
